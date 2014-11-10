@@ -1,0 +1,41 @@
+{
+  "name": "generator-moxie-wp",
+  "version": "0.0.1",
+  "description": "WordPress Starter Theme Generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "jeffreynolte/generator-moxie-wp",
+  "author": {
+    "name": "Jeffrey Nolte",
+    "email": "jnolte@getmoxied.net",
+    "url": "https://github.com/jeffreynolte"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "wordpress",
+    "front-end",
+    "underscores",
+    "gulp"
+  ],
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "fs": "0.0.2",
+    "yeoman-generator": "^0.17.0",
+    "yosay": "^0.3.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}

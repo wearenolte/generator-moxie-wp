@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-moxie-wp' ]; then cd .. && eval "mv $currentfolder generator-moxie-wp" && cd generator-moxie-wp; fi
+
