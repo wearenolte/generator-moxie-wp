@@ -6,6 +6,9 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
+//TODO - Composer Integration
+//TODO - Capistrano Integration
+//TODO - Use Some like it neat theme
 //TODO - Cleanup the file replacement scripts
 //TODO - Create Directory if one does not exist
 //TODO - Create Scripts for running SASS (or convert to better patterns - SMACSS)
@@ -16,6 +19,7 @@ var yosay = require('yosay');
 //TODO - Add Plugin Install Tasks (using wpcli)
 //TODO - Add All Gulp Tasks (using wpcli)
 //TODO - Add Task for Seeding DB (using wpcli)
+
 
 
 var MoxieWpGenerator = yeoman.generators.Base.extend({
