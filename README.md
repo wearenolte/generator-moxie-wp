@@ -1,4 +1,4 @@
-# generator-moxie-wp [![Build Status](https://secure.travis-ci.org/jeffreynolte/generator-moxie-wp.png?branch=master)](https://travis-ci.org/jeffreynolte/generator-moxie-wp)
+# generator-moxie-wp [![Build Status](https://travis-ci.org/moxienyc/generator-moxie-wp.svg?branch=master)](https://travis-ci.org/moxienyc/generator-moxie-wp)
 
 > [Yeoman](http://yeoman.io) generator
 
