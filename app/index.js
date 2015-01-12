@@ -19,6 +19,10 @@ var yosay = require('yosay');
 //TODO - Add Plugin Install Tasks (using wpcli)
 //TODO - Add All Gulp Tasks (using wpcli)
 //TODO - Add Task for Seeding DB (using wpcli)
+//TODO - JSJHint
+//TODO - PHP CodeSniffer
+//TODO - WordPress Coding Standards
+
 
 
 
