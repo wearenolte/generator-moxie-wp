@@ -44,4 +44,16 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 
 ## License
 
+## Roadmap
+- Recess integration for CSS standardization: http://twitter.github.io/recess/
+- WordPress coding standards: https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
+- PHP Code Sniffer Integration: https://github.com/squizlabs/PHP_CodeSniffer
+- JSHint: http://jshint.com/
+- PHPUnit for unit tests
+- Editor Config: http://editorconfig.org/
+- Travis CI: https://travis-ci.org/recent
+- Pre-Commit hooks: http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
+
+
+
 MIT
