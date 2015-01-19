@@ -4,7 +4,7 @@
   "description": "WordPress Starter Theme Generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "jeffreynolte/generator-moxie-wp",
+  "repository": "moxienyc/generator-moxie-wp",
   "author": {
     "name": "Jeffrey Nolte",
     "email": "jnolte@getmoxied.net",
