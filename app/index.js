@@ -71,8 +71,8 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         this.prompt(prompts, function (props) {
             this.themeName = props.themeName;
             this.themeHandle = props.themeName.trim().replace(/ /g, '-');
-            this.themeFunction = props.themeName.toLowerCase().trim().replace(/ /g, '_');
-            this.themeTextDomain = props.themeName.toLowerCase().trim().replace(/ /g, '_');
+            this.themeFunction = props.themeName.toLowerCase().trim().replace(/ /g, '_') + '_';
+            this.themeTextDomain = 'Text Domain: ' + props.themeName.toLowerCase().trim().replace(/ /g, '_');
             this.themeAuthor = props.themeAuthor;
             this.themeAuthorURI = props.themeAuthorURI;
             this.themeURI = props.themeURI;
@@ -86,9 +86,9 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     getUnderscoreFromGitUrl: function () {
         var cb = this.async();
 
-        this.log.writeln(chalk.green("\n\nGrabbing the latest underscore theme from GitHub, yo!"));
-        this.extract('https://github.com/Automattic/_s/archive/master.tar.gz', '.', cb);
-        this.log.writeln(chalk.green("\n\nGot that fresh underscores, yo!"));
+        this.log.writeln(chalk.green("\n\nGrabbing the latest 'Some Like it Neat' theme from GitHub, yo!"));
+        this.extract('https://github.com/digisavvy/some-like-it-neat/archive/master.tar.gz', '.', cb);
+        this.log.writeln(chalk.green("\n\nGot that fresh 'Some Like it Neat', yo!"));
     },
 
     setupFilesWithTheCorrectSettingNames: function () {
@@ -107,15 +107,15 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
                         parseDirectory(filePath)
                     } else {
                         fs.readFile(filePath, 'utf8', function (err, data) {
-                            data = data.replace(/_s/g, _this.themeName);
-                            data = data.replace(/_s_/g, _this.themeFunction);
-                            data = data.replace(/Text Domain: _s/g, _this.themeTextDomain);
-                            data = data.replace(/ _s/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
-                            data = data.replace(/_s-/g, _this.themeHandle);
-                            data = data.replace(/Automattic/g, _this.themeAuthor);
-                            data = data.replace(/automattic.com/g, _this.themeAuthorURI);
-                            data = data.replace(/underscores.me/g, _this.themeURI);
-                            data = data.replace(/Hi. I'm a starter theme called <code>_s<\/code>, or <em>underscores<\/em>, if you like. I'm a theme meant for hacking so don't use me as a <em>Parent Theme<\/em>. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for./g, _this.themeDescription);
+                            data = data.replace(/Some Like it Neat/g, _this.themeName);
+                            data = data.replace(/digistarter_/g, _this.themeFunction);
+                            data = data.replace(/Text Domain: digistarter/g, _this.themeTextDomain);
+                            data = data.replace(/ Some Like it Neat/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
+                            data = data.replace(/digistarter-/g, _this.themeHandle);
+                            data = data.replace(/Alex Vasquez/g, _this.themeAuthor);
+                            data = data.replace(/http:\/\/alexhasnicehair.com/g, _this.themeAuthorURI);
+                            data = data.replace(/https:\/\/github.com\/digisavvy\/some-like-it-neat/g, _this.themeURI);
+                            data = data.replace(/A simple yet advanced Starter Theme built using _S, Bourbon and Neat (http:\/\/underscores.me, http:\/\/bourbon.io, http:\/\/neat.bourbon.io). Please refer to the README.md file for basic usage instructions and prerequisites. You can always grab the latest version over at http:\/\/github.com\/digisavvy.some-like-it-neat/g, _this.themeDescription);
 
                             //data = data.replace(/themeDesigner/g, _this.themeDesigner);
                             //data = data.replace(/themeDesignerURI/g, _this.themeDesignerURI);
