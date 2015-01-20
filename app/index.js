@@ -87,7 +87,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         var cb = this.async();
 
         this.log.writeln(chalk.green("\n\nGrabbing the latest 'Some Like it Neat' theme from GitHub, yo!"));
-        this.extract('https://github.com/digisavvy/some-like-it-neat/archive/master.tar.gz', '.', cb);
+        this.extract('https://github.com/moxienyc/some-like-it-neat/archive/master.tar.gz', '.', cb);
         this.log.writeln(chalk.green("\n\nGot that fresh 'Some Like it Neat', yo!"));
     },
 
@@ -115,7 +115,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
                             data = data.replace(/Alex Vasquez/g, _this.themeAuthor);
                             data = data.replace(/http:\/\/alexhasnicehair.com/g, _this.themeAuthorURI);
                             data = data.replace(/https:\/\/github.com\/digisavvy\/some-like-it-neat/g, _this.themeURI);
-                            data = data.replace(/A simple yet advanced Starter Theme built using _S, Bourbon and Neat (http:\/\/underscores.me, http:\/\/bourbon.io, http:\/\/neat.bourbon.io). Please refer to the README.md file for basic usage instructions and prerequisites. You can always grab the latest version over at http:\/\/github.com\/digisavvy.some-like-it-neat/g, _this.themeDescription);
+                            data = data.replace(/A simple yet advanced Starter Theme built using _S, Bourbon and Neat. Please refer to the README.md file for basic usage instructions and prerequisites./g, _this.themeDescription);
 
                             //data = data.replace(/themeDesigner/g, _this.themeDesigner);
                             //data = data.replace(/themeDesignerURI/g, _this.themeDesignerURI);
