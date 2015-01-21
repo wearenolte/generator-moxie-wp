@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var path = require('path');
-var fs = require('fs');
+var fs = require('fs.extra');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
@@ -59,7 +59,10 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
             }
         }, {
             name: 'themeURI',
-            message: 'What is the url of where this website will be deployed in production?'
+            message: 'What is the url of where this website will be deployed in production?',
+            default: function (answers) {
+                return 'http://getmoxied.net';
+            }
         }, {
             name: 'themeDescription',
             message: 'Tell me a brief description of this theme.',
@@ -91,12 +94,45 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         this.log.writeln(chalk.green("\n\nGot that fresh 'Some Like it Neat', yo!"));
     },
 
+    moveFilesToCorrectLocation: function () {
+
+        var finito = this.async();
+        var _this = this;
+
+        function moveDirectory( src, dest ) {
+            console.log('movedir called');
+            fs.copyRecursive( src, dest, function ( err ) {
+                if ( err ) {
+                    return console.log(chalk.red(err));
+                }
+                console.log(chalk.green('Yo ! Files are copied!'));
+                finito();
+            } )
+        }
+
+        moveDirectory( 'some-like-it-neat-master', '.' );
+    },
+
+    removeExtraFiles: function() {
+
+        var finito = this.async();
+        var _this = this;
+
+        console.log('remove dir called');
+        fs.remove( './some-like-it-neat-master', function( err ) {
+            if ( err ) {
+                return console.log( chalk.red( err ) );
+            }
+            finito();
+        });
+    },
+
     setupFilesWithTheCorrectSettingNames: function () {
         var finito = this.async();
         var _this = this;
 
         function parseDirectory(path) {
-
+            console.log('pareDir called');
             fs.readdir(path, function (err, files) {
                 files.forEach(function (file) {
 
@@ -136,17 +172,8 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     },
 
     writing: {
-        app: function () {
-            this.dest.mkdir('app');
-            this.dest.mkdir('app/templates');
-
-            this.src.copy('_package.json', 'package.json');
-            this.src.copy('_bower.json', 'bower.json');
-        },
-
         projectfiles: function () {
             this.src.copy('editorconfig', '.editorconfig');
-            this.src.copy('jshintrc', '.jshintrc');
         }
     },
 
