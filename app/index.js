@@ -81,6 +81,8 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
             this.themeURI = props.themeURI;
             this.themeDescription = props.themeDescription;
 
+            this.themeDirectory = './wp-content/themes/' + this.themeHandle.toLowerCase() + '/';
+
             done();
 
         }.bind(this));
@@ -109,7 +111,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
             } )
         }
 
-        moveDirectory( 'some-like-it-neat-master', '.' );
+        moveDirectory( 'some-like-it-neat-master', this.themeDirectory );
     },
 
     removeExtraFiles: function() {
@@ -173,12 +175,15 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     },
 
     writing: {
+        // Going to theme directory and then copy editorconfig.
         projectfiles: function () {
-            this.src.copy('editorconfig', '.editorconfig');
+            this.src.copy('editorconfig', this.themeDirectory + '.editorconfig');
         }
     },
 
     end: function () {
+        // Going to theme directory and then install bower & npm.
+        process.chdir( path.normalize( this.themeDirectory ) );
         this.installDependencies();
     }
 
