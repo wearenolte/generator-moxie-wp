@@ -185,6 +185,8 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         // Going to theme directory and then install bower & npm.
         process.chdir( path.normalize( this.themeDirectory ) );
         this.installDependencies();
+        // Returning back to Root directory.
+        process.chdir( path.normalize( this.destinationRoot() ) );
     }
 
 });
