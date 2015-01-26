@@ -100,12 +100,11 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         var _this = this;
 
         function moveDirectory( src, dest ) {
-            console.log('movedir called');
             fs.copyRecursive( src, dest, function ( err ) {
                 if ( err ) {
                     return console.log(chalk.red(err));
                 }
-                console.log(chalk.green('Yo ! Files are copied!'));
+                console.log(chalk.green('Yo ! Theme files are copied!'));
                 finito();
             } )
         }
@@ -118,11 +117,11 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         var finito = this.async();
         var _this = this;
 
-        console.log('remove dir called');
         fs.remove( './some-like-it-neat-master', function( err ) {
             if ( err ) {
                 return console.log( chalk.red( err ) );
             }
+            console.log(chalk.green('Yo ! Extra Files are removed!'));
             finito();
         });
     },
@@ -132,7 +131,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         var _this = this;
 
         function parseDirectory(path) {
-            console.log('pareDir called');
+
             fs.readdir(path, function (err, files) {
                 files.forEach(function (file) {
 
@@ -148,6 +147,8 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
                             data = data.replace(/Text Domain: digistarter/g, _this.themeTextDomain);
                             data = data.replace(/ Some Like it Neat/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
                             data = data.replace(/digistarter-/g, _this.themeHandle);
+                            data = data.replace(/ digistarter/g, _this.themeName);
+                            data = data.replace(/somelikeitneat/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
                             data = data.replace(/Alex Vasquez/g, _this.themeAuthor);
                             data = data.replace(/http:\/\/alexhasnicehair.com/g, _this.themeAuthorURI);
                             data = data.replace(/https:\/\/github.com\/digisavvy\/some-like-it-neat/g, _this.themeURI);
@@ -167,8 +168,8 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         }
 
         parseDirectory('.');
+        console.log(chalk.green('Yo ! Theme files are setup!'));
         finito();
-
     },
 
     writing: {
