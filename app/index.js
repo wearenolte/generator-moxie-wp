@@ -177,7 +177,8 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     writing: {
         // Going to theme directory and then copy editorconfig.
         projectfiles: function () {
-            this.src.copy('editorconfig', this.themeDirectory + '.editorconfig');
+            this.src.copy( 'editorconfig', this.themeDirectory + '.editorconfig' );
+            this.src.copy( '_composer.json', this.themeDirectory + 'composer.json' );
         }
     },
 
@@ -185,6 +186,10 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         // Going to theme directory and then install bower & npm.
         process.chdir( path.normalize( this.themeDirectory ) );
         this.installDependencies();
+
+        // Composer Installations
+        this.spawnCommand( 'composer', ['install'] );
+
         // Returning back to Root directory.
         process.chdir( path.normalize( this.destinationRoot() ) );
     }
