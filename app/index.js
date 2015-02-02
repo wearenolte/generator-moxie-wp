@@ -189,6 +189,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
 
         // Composer Installations
         this.spawnCommand( 'composer', ['install'] );
+        console.log( chalk.green( 'Yo ! Just started intalling Composer Dependencies. Running ' ) + chalk.yellow( 'composer install' ) + chalk.green( '. If this fails, try running the command yourself.' ) );
 
         // Returning back to Root directory.
         process.chdir( path.normalize( this.destinationRoot() ) );
