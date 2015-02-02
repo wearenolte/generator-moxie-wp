@@ -92,7 +92,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         var cb = this.async();
 
         this.log.writeln(chalk.green("\n\nGrabbing the latest 'Some Like it Neat' theme from GitHub, yo!"));
-        this.extract('https://github.com/moxienyc/some-like-it-neat/archive/master.tar.gz', '.', cb);
+        this.extract('https://github.com/digisavvy/some-like-it-neat/archive/master.tar.gz', '.', cb);
         this.log.writeln(chalk.green("\n\nGot that fresh 'Some Like it Neat', yo!"));
     },
 
