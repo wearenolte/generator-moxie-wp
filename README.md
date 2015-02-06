@@ -55,5 +55,12 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 - Pre-Commit hooks: http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
 
 
+## How to use it locally
+
+- `git clone https://github.com/moxienyc/generator-moxie-wp.git`
+- `cd generator-moxie-wp`
+- `npm link`
+- Create a project folder for which you need `moxie-wp` generator. (Not within the `generator-moxie-wp` folder) i.e., `mkdir testing-out-loud && cd testing-out-loud`
+- `yo moxie-wp` and see the magic.
 
 MIT
