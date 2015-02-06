@@ -92,7 +92,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         var cb = this.async();
 
         this.log.writeln(chalk.green("\n\nGrabbing the latest 'Some Like it Neat' theme from GitHub, yo!"));
-        this.extract('https://github.com/digisavvy/some-like-it-neat/archive/master.tar.gz', '.', cb);
+        this.extract('https://github.com/moxienyc/some-like-it-neat/archive/development.tar.gz', '.', cb);
         this.log.writeln(chalk.green("\n\nGot that fresh 'Some Like it Neat', yo!"));
     },
 
@@ -111,7 +111,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
             } )
         }
 
-        moveDirectory( 'some-like-it-neat-master', this.themeDirectory );
+        moveDirectory( 'some-like-it-neat-development', this.themeDirectory );
     },
 
     removeExtraFiles: function() {
@@ -119,7 +119,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         var finito = this.async();
         var _this = this;
 
-        fs.remove( './some-like-it-neat-master', function( err ) {
+        fs.remove( './some-like-it-neat-development', function( err ) {
             if ( err ) {
                 return console.log( chalk.red( err ) );
             }
@@ -178,7 +178,6 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         // Going to theme directory and then copy editorconfig.
         projectfiles: function () {
             this.src.copy( 'editorconfig', this.themeDirectory + '.editorconfig' );
-            this.src.copy( '_composer.json', this.themeDirectory + 'composer.json' );
         }
     },
 
