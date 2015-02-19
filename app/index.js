@@ -92,7 +92,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         var cb = this.async();
 
         this.log.writeln(chalk.green("\n\nGrabbing the latest 'Some Like it Neat' theme from GitHub, yo!"));
-        this.extract('https://github.com/moxienyc/some-like-it-neat/archive/master.tar.gz', '.', cb);
+        this.extract('https://github.com/digisavvy/some-like-it-neat/archive/master.tar.gz', '.', cb);
         this.log.writeln(chalk.green("\n\nGot that fresh 'Some Like it Neat', yo!"));
     },
 
@@ -140,17 +140,23 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
                     var filePath = fs.realpathSync(path + '/' + file);
                     var isDirectory = fs.statSync(filePath).isDirectory()
 
-                    if (isDirectory) {
+                    if ( isDirectory && filePath.indexOf('.git') < 0 ) {
                         parseDirectory(filePath)
                     } else {
+
                         fs.readFile(filePath, 'utf8', function (err, data) {
+
+                            if ( typeof data === 'undefined' ) {
+                                return;
+                            }
+
                             data = data.replace(/Some Like it Neat/g, _this.themeName);
                             data = data.replace(/digistarter_/g, _this.themeFunction);
-                            data = data.replace(/Text Domain: digistarter/g, _this.themeTextDomain);
+                            data = data.replace(/Text Domain: some_like_it_neat/g, _this.themeTextDomain);
                             data = data.replace(/ Some Like it Neat/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
                             data = data.replace(/digistarter-/g, _this.themeHandle);
                             data = data.replace(/ digistarter/g, _this.themeName);
-                            data = data.replace(/somelikeitneat/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
+                            data = data.replace(/some_like_it_neat/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
                             data = data.replace(/Alex Vasquez/g, _this.themeAuthor);
                             data = data.replace(/http:\/\/alexhasnicehair.com/g, _this.themeAuthorURI);
                             data = data.replace(/https:\/\/github.com\/digisavvy\/some-like-it-neat/g, _this.themeURI);
