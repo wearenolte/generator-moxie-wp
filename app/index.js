@@ -151,12 +151,11 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
                             }
 
                             data = data.replace(/Some Like it Neat/g, _this.themeName);
-                            data = data.replace(/digistarter_/g, _this.themeFunction);
+                            data = data.replace(/some_like_it_neat_/g, _this.themeFunction);
                             data = data.replace(/Text Domain: some_like_it_neat/g, _this.themeTextDomain);
                             data = data.replace(/ Some Like it Neat/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
-                            data = data.replace(/digistarter-/g, _this.themeHandle);
-                            data = data.replace(/ digistarter/g, _this.themeName);
-                            data = data.replace(/some_like_it_neat/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
+                            data = data.replace(/some-like-it-neat-/g, _this.themeHandle);
+                            data = data.replace(/somelikeitneat/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
                             data = data.replace(/Alex Vasquez/g, _this.themeAuthor);
                             data = data.replace(/http:\/\/alexhasnicehair.com/g, _this.themeAuthorURI);
                             data = data.replace(/https:\/\/github.com\/digisavvy\/some-like-it-neat/g, _this.themeURI);
