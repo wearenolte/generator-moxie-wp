@@ -117,7 +117,6 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     removeExtraFiles: function() {
 
         var finito = this.async();
-        var _this = this;
 
         fs.remove( './some-like-it-neat-master', function( err ) {
             if ( err ) {
