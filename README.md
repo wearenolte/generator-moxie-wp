@@ -44,6 +44,8 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 
 ## License
 
+MIT
+
 ## Roadmap
 - Recess integration for CSS standardization: http://twitter.github.io/recess/
 - WordPress coding standards: https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
@@ -63,4 +65,11 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 - Create a project folder for which you need `moxie-wp` generator. (Not within the `generator-moxie-wp` folder) i.e., `mkdir testing-out-loud && cd testing-out-loud`
 - `yo moxie-wp` and see the magic.
 
-MIT
+
+## WP Test Data for Theme Testing
+
+- Just run following command from anywhere in the terminal.
+- `yo moxie-wp:wptest`
+- It will ask you for the WordPress installation path. Provide one and press enter.
+    - E.g., my WordPress installation is at `/var/www/example.com/htdocs/`. That's where my WordPress index.php & wp-load.php is available. So I'll give that path as input here.
+- That's it ! The tool will download the test data XML file. Install/Activate WordPress Importer plugin on your site and import all the test data to your site. This part of importing is a heavy downloading process, so it might take some time depending on your internet connection.
