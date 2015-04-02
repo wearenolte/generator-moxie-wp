@@ -60,18 +60,19 @@ yo moxie-wp:wptest
 - This generator downloads [Some Like it Neat](https://github.com/digisavvy/some-like-it-neat) theme and sets it up for you.
 - You can explore its documentation to know more about the theme.
 - Here are a few important steps that you might have to follow if you're stuck.
-    - ### npm dependency failed
+    - **npm dependency failed**
         - Go to theme directory i.e., `wp-content/themes/xyz-theme` and run `npm install`
-    - ### bower dependency failed
+    - **bower dependency failed**
         - Go to theme directory i.e., `wp-content/themes/xyz-theme` and run `bower install`
-    - ### composer dependency failed (phpcs)
+    - **composer dependency failed (phpcs)**
         - Go to theme directory i.e., `wp-content/themes/xyz-theme` and run `composer install`
-- ### Assets Generation
+- **Assets Generation**
     - To generate CSS/JS build, you just need to run `gulp` in the theme directory. It will perform all the default gulp tasks for the theme which includes following
         - compile sass to generate css and other styles related tasks.
         - concat all the JS into one JS file and other JS related tasks
         - jsHint code scan for JS standards
         - phpcs code scan for WordPress standards
+
 ## Roadmap
 - Recess integration for CSS standardization: http://twitter.github.io/recess/
 - WordPress coding standards: https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
