@@ -2,6 +2,18 @@
 
 > [Yeoman](http://yeoman.io) generator
 
+## Prerequisites
+
+- You'll need to download and install Node. Ref : https://nodejs.org
+    - Preferably install node using nvm. It helps you maintain different versions of node. Ref : https://github.com/creationix/nvm
+- You'll need to install npm (Node Package Manager)
+    - Node comes with npm installed so you should have a version of npm. However, npm gets updated more frequently than Node does, so you'll want to make sure it's the latest version.
+
+```bash
+npm install npm -g
+```
+
+- Test: Run `npm -v`. The version should be higher than 2.1.8.
 
 ## Getting Started
 
@@ -43,6 +55,23 @@ yo moxie-wp:wptest
 - Create a project folder for which you need `moxie-wp` generator. (Not within the `generator-moxie-wp` folder) i.e., `mkdir testing-out-loud && cd testing-out-loud`
 - `yo moxie-wp` and see the magic.
 
+## Some Like it Neat Guidelines
+
+- This generator downloads [Some Like it Neat](https://github.com/digisavvy/some-like-it-neat) theme and sets it up for you.
+- You can explore its documentation to know more about the theme.
+- Here are a few important steps that you might have to follow if you're stuck.
+    - ### npm dependency failed
+        - Go to theme directory i.e., `wp-content/themes/xyz-theme` and run `npm install`
+    - ### bower dependency failed
+        - Go to theme directory i.e., `wp-content/themes/xyz-theme` and run `bower install`
+    - ### composer dependency failed (phpcs)
+        - Go to theme directory i.e., `wp-content/themes/xyz-theme` and run `composer install`
+- ### Assets Generation
+    - To generate CSS/JS build, you just need to run `gulp` in the theme directory. It will perform all the default gulp tasks for the theme which includes following
+        - compile sass to generate css and other styles related tasks.
+        - concat all the JS into one JS file and other JS related tasks
+        - jsHint code scan for JS standards
+        - phpcs code scan for WordPress standards
 ## Roadmap
 - Recess integration for CSS standardization: http://twitter.github.io/recess/
 - WordPress coding standards: https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
