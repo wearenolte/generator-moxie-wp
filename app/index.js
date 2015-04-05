@@ -1,4 +1,5 @@
 'use strict';
+
 var path = require('path');
 var fs = require('fs.extra');
 var yeoman = require('yeoman-generator');
@@ -35,37 +36,44 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the MoxieWp generator.. Some quick questions to get started...'
+      'Welcome to the Moxie Wordpress generator. ' +
+      'Some quick questions to get started...'
     ));
 
-    var prompts = [{
-      name: 'themeName',
-      message: 'What is the name of this theme?'
-    }, {
-      name: 'themeAuthor',
-      message: 'Who is the theme author?',
-      default: function (answers) {
-        return 'Moxie NYC - http://getmoxied.net';
+    var prompts = [
+      {
+        name: 'themeName',
+        message: 'What is the name of this theme?'
+      },
+      {
+        name: 'themeAuthor',
+        message: 'Who is the theme author?',
+        default: function (answers) {
+          return 'Moxie NYC - http://getmoxied.net';
+        }
+      },
+      {
+        name: 'themeAuthorURI',
+        message: 'What\'s the url of the theme author?',
+        default: function (answers) {
+          return 'http://getmoxied.net';
+        }
+      },
+      {
+        name: 'themeURI',
+        message: 'What is the url of where this website will be deployed in production?',
+        default: function (answers) {
+          return 'http://getmoxied.net';
+        }
+      },
+      {
+        name: 'themeDescription',
+        message: 'Tell me a brief description of this theme.',
+        default: function (answers) {
+          return answers.themeName + ' custom theme';
+        }
       }
-    }, {
-      name: 'themeAuthorURI',
-      message: 'What\'s the url of the theme author?',
-      default: function (answers) {
-        return 'http://getmoxied.net';
-      }
-    }, {
-      name: 'themeURI',
-      message: 'What is the url of where this website will be deployed in production?',
-      default: function (answers) {
-        return 'http://getmoxied.net';
-      }
-    }, {
-      name: 'themeDescription',
-      message: 'Tell me a brief description of this theme.',
-      default: function (answers) {
-        return answers.themeName + ' custom theme';
-      }
-    }];
+    ];
 
     this.prompt(prompts, function (props) {
       this.themeName = props.themeName;
