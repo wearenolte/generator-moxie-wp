@@ -35,6 +35,16 @@ Finally, initiate the generator:
 yo moxie-wp
 ```
 
+## Install wordpress files for the repo.
+
+- To download the latest version of wordpress just run
+
+```bash
+yo moxie-wp:download
+```
+
+This command will download the latest version of WP and extract the files in the current directory.
+
 ## WP Test Data for Theme Testing
 
 - Just run following command from anywhere in the terminal.
