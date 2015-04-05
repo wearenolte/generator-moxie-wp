@@ -49,7 +49,6 @@ var MoxieDownload = yeoman.generators.Base.extend( {
       console.log('\n' + chalk.bold.yellow( message ));
 
       rimraf('./tmp/wordpress/wp-content', function(){
-        console.log( chalk.yellow( 'Removing wp-content' ) );
         cb();
       });
     },
@@ -81,6 +80,19 @@ var MoxieDownload = yeoman.generators.Base.extend( {
       } else {
         console.log( chalk.yellow('Looks like you do not have wp-content directory') );
       }
+    },
+    removeTmpDirectory: function(){
+      var cb = this.async();
+      var message = 'Removing the temporarily directory';
+      console.log('\n' + chalk.bold.yellow( message ));
+
+      rimraf('./tmp', function(){
+        cb();
+      });
+    },
+    end: function(){
+      var message = 'We are done, thanks, and have a nice day';
+      console.log('\n' + chalk.bold.green( message ));
     }
 });
 
