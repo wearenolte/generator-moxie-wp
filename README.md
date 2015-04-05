@@ -45,6 +45,9 @@ yo moxie-wp:download
 
 This command will download the latest version of WP and extract the files in the current directory.
 
+
+**Note** It will install the files in the current directory, so make sure to be in the directory where you want the files**
+
 ## WP Test Data for Theme Testing
 
 - Just run following command from anywhere in the terminal.
