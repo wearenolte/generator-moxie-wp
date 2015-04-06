@@ -138,6 +138,9 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     function parseDirectory(path) {
 
       fs.readdir(path, function (err, files) {
+        if( ! files ) {
+          return;
+        }
         files.forEach(function (file) {
 
           var filePath = fs.realpathSync(path + '/' + file);
@@ -190,7 +193,29 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     }
   },
 
+  getGitIgnore: function(){
+    var url = 'https://gist.githubusercontent.com/mitogh/6f999520f3fd5145dd04/raw/7bdb4a5bbc4a6a1f68e6d833ff35486fb05f109b/.gitignore';
+    var cb = this.async();
 
+    this.fetch(url, '.', cb);
+  },
+  setupGitIgnore: function(){
+    var that = this;
+    var content;
+    console.log( chalk.green( 'Adding the .gitignore file' ) );
+    fs.readFile('./.gitignore', 'utf8', function read(err, line) {
+      if (err) {
+        var message = 'There was a problem reading the .gitignore file';
+        console.log( chalk.bold.red( message ) );
+      }
+      if( line && line.replace ){
+        line = line.replace('{{name}}', that.themeName);
+      }
+      fs.writeFile('./.gitignore', line, 'utf8', function (err) {
+        if (err) return console.log(err);
+      });
+    });
+  },
   end: function () {
     // Going to theme directory and then install bower & npm.
     var message;
@@ -205,8 +230,8 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
       console.log( chalk.bold.red( message ) );
     });
     console.log( chalk.green( 'Yo ! Just started intalling Composer Dependencies. Running ' ) +
-                 chalk.yellow( 'composer install' ) +
-                 chalk.green( '. If this fails, try running the command yourself.' ) );
+                chalk.yellow( 'composer install' ) +
+                chalk.green( '. If this fails, try running the command yourself.' ) );
 
     // Returning back to Root directory.
     process.chdir( path.normalize( this.destinationRoot() ) );
