@@ -190,19 +190,27 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     }
   },
 
+
   end: function () {
     // Going to theme directory and then install bower & npm.
+    var message;
     process.chdir( path.normalize( this.themeDirectory ) );
     this.installDependencies();
 
-    // Composer Installations
-    this.spawnCommand( 'composer', ['install'] );
-    console.log( chalk.green( 'Yo ! Just started intalling Composer Dependencies. Running ' ) + chalk.yellow( 'composer install' ) + chalk.green( '. If this fails, try running the command yourself.' ) );
+    this.spawnCommand( 'composer', ['install'] ).on('error', function( err ){
+      message = '\n' +
+        'Yo! There was an error while the composer dependencies' +
+        'were installed, so please try to install the dependencies manually' +
+        '\n';
+      console.log( chalk.bold.red( message ) );
+    });
+    console.log( chalk.green( 'Yo ! Just started intalling Composer Dependencies. Running ' ) +
+                 chalk.yellow( 'composer install' ) +
+                 chalk.green( '. If this fails, try running the command yourself.' ) );
 
     // Returning back to Root directory.
     process.chdir( path.normalize( this.destinationRoot() ) );
   }
-
 });
 
 module.exports = MoxieWpGenerator;
