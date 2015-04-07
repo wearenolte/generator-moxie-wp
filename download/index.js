@@ -11,7 +11,7 @@ var MoxieDownload = yeoman.generators.Base.extend( {
     prompting: function(){
       var done = this.async(); var prompt = {
         name: 'install',
-        message: 'Do you want to install Wordpress [yes / no]?:'
+        message: 'Do you want to download the latest version of Wordpress [yes / no]?:'
       };
 
       this.prompt(prompt, function(answers){
