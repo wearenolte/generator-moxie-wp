@@ -189,15 +189,18 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
   writing: {
     // Going to theme directory and then copy editorconfig.
     projectfiles: function () {
-      this.src.copy( 'editorconfig', this.themeDirectory + '.editorconfig' );
+      this.fs.copy(
+        this.templatePath('editorconfig'),
+        this.destinationPath(this.themeDirectory + '.editorconfig')
+      );
     }
   },
-
   getGitIgnore: function(){
-    var url = 'https://gist.githubusercontent.com/mitogh/6f999520f3fd5145dd04/raw/7bdb4a5bbc4a6a1f68e6d833ff35486fb05f109b/.gitignore';
-    var cb = this.async();
-
-    this.fetch(url, '.', cb);
+    this.fs.copyTpl(
+      this.templatePath('gitignore'),
+      this.destinationPath('./.gitignore'),
+      { name: this.themeName }
+    );
   },
   setupGitIgnore: function(){
     var that = this;
