@@ -68,9 +68,9 @@ yo moxie-wp:wptest
 yo moxie-wp:travis
 ```
 
-- It will ask you for the theme repository path. Provide one and press enter.
-    - E.g., my theme repository is at `/Users/udit/Documents/test-yeo`. So I'll give that path as input here.
 - That's it. The tool will place a `.travis.yml` file for [Travis-CI](travis-ci.com) integration and `ci.sh` script file which will be executed on every commit pushed to repo.
+
+**Note** It will place the files in the current directory, so make sure to be in the directory where you want the files**
 
 ## How to use it locally
 
