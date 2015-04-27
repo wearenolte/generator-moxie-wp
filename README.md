@@ -1,4 +1,4 @@
-# generator-moxie-wp [![Build Status](https://travis-ci.org/moxienyc/generator-moxie-wp.svg?branch=master)](https://travis-ci.org/moxienyc/generator-moxie-wp)
+# generator-moxie-wp [![Build Status](https://secure.travis-ci.org/moxienyc/generator-moxie-wp.png?branch=master)](https://travis-ci.org/jeffreynolte/generator-moxie-wp)
 
 > [Yeoman](http://yeoman.io) generator
 
@@ -34,6 +34,19 @@ Finally, initiate the generator:
 ```bash
 yo moxie-wp
 ```
+
+## Install wordpress files for the repo.
+
+- To download the latest version of wordpress just run
+
+```bash
+yo moxie-wp:download
+```
+
+This command will download the latest version of WP and extract the files in the current directory.
+
+
+**Note** It will install the files in the current directory, so make sure to be in the directory where you want the files**
 
 ## WP Test Data for Theme Testing
 

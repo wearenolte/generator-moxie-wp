@@ -1,0 +1,31 @@
+### Ignore all Files
+*~
+/*
+### Ignore files from MAC
+.DS_Store
+### Ignore sass cache and node modules
+.sass-cache
+node_modules/
+
+### Except markdown files.
+!*.md
+### Except git ignore file
+!/.gitignore
+
+### Except "wp-content"
+!/wp-content
+
+### Ignore everything in the "wp-content" directory
+wp-content/*
+#
+# Except themes
+!/wp-content/themes/
+
+### Ignore everything in the "themes" directory
+/wp-content/themes/*
+
+### Except the theme <%= name %>
+!/wp-content/themes/<%= name %>
+
+## Other rules down here.
+
