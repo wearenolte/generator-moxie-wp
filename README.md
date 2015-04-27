@@ -47,6 +47,18 @@ yo moxie-wp:wptest
     - E.g., my WordPress installation is at `/var/www/example.com/htdocs/`. That's where my WordPress index.php & wp-load.php is available. So I'll give that path as input here.
 - That's it ! The tool will download the test data XML file. Install/Activate WordPress Importer plugin on your site and import all the test data to your site. This part of importing is a heavy downloading process, so it might take some time depending on your internet connection.
 
+## Travis CI Setup for WordPress Theme Repository
+
+- Just run following command anywhere in the terminal.
+
+```bash
+yo moxie-wp:travis
+```
+
+- It will ask you for the theme repository path. Provide one and press enter.
+    - E.g., my theme repository is at `/Users/udit/Documents/test-yeo`. So I'll give that path as input here.
+- That's it. The tool will place a `.travis.yml` file for [Travis-CI](travis-ci.com) integration and `ci.sh` script file which will be executed on every commit pushed to repo.
+
 ## How to use it locally
 
 - `git clone https://github.com/moxienyc/generator-moxie-wp.git`
