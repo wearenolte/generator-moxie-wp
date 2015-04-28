@@ -82,6 +82,17 @@ yo moxie-wp:travis
 
 ## Some Like it Neat Guidelines
 
+#### Pre-requisites
+
+```bash
+# Install Bower
+npm install -g bower
+
+# Install Composer (Ref : https://getcomposer.org/doc/00-intro.md#globally)
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+```
+
 - This generator downloads [Some Like it Neat](https://github.com/digisavvy/some-like-it-neat) theme and sets it up for you.
 - You can explore its documentation to know more about the theme.
 - Here are a few important steps that you might have to follow if you're stuck.
