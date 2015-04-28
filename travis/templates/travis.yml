@@ -3,7 +3,6 @@ language:
     - node_js
 
 php:
-    - 5.4
     - 5.5
 
 node_js:
@@ -11,9 +10,6 @@ node_js:
 
 env:
     - WP_VERSION=latest WP_MULTISITE=0
-    - WP_VERSION=latest WP_MULTISITE=1
-    - WP_VERSION=4.0 WP_MULTISITE=0
-    - WP_VERSION=4.0 WP_MULTISITE=1
 
 script:
     - bash ci.sh

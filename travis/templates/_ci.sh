@@ -2,7 +2,7 @@
 
 # BEFORE SCRIPT
 
-set +e
+set -e
 
 export REPO_DIR=$(pwd)
 
@@ -34,7 +34,7 @@ cd $REPO_DIR
 
 cd $THEME_DIR
 
-set +e
+set -e
 
 # Run PHP syntax check
 find $PATH_INCLUDES -path ./bin -prune -o \( -name '*.php' \) -exec php -lf {} \;
