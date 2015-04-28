@@ -79,6 +79,10 @@ yo moxie-wp:travis
 - After you run the travis sub-command to place travis related files, you will have `ci.sh` script file in the repository root.
 - You can simply run that script to check for errors on your local machine. `bash ci.sh`.
 
+***OR***
+
+- You can run `gulp phpcs` & `gulp jshint` within your theme folder. That will also show you the errors.
+
 ## How to use it locally
 
 - `git clone https://github.com/moxienyc/generator-moxie-wp.git`
