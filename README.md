@@ -74,7 +74,7 @@ yo moxie-wp:travis
 
 **Note** It will place the files in the current directory, so make sure to be in the directory where you want the files
 
-### Run the script on local to check for errors before commiting
+### Run the script on local to check for errors before committing
 
 - After you run the travis sub-command to place travis related files, you will have `ci.sh` script file in the repository root.
 - You can simply run that script to check for errors on your local machine. `bash ci.sh`.
