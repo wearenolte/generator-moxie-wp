@@ -46,7 +46,7 @@ yo moxie-wp:download
 This command will download the latest version of WP and extract the files in the current directory.
 
 
-**Note** It will install the files in the current directory, so make sure to be in the directory where you want the files**
+**Note** It will install the files in the current directory, so make sure to be in the directory where you want the files
 
 ## WP Test Data for Theme Testing
 
@@ -72,7 +72,12 @@ yo moxie-wp:travis
 
 - You will need to update the `THEME_DIR` variable in `ci.sh` script according to your theme repository. E.g., if your wordpress theme path is `wp-content/themes/example` in your repository, then you will put `THEME_DIR` value as `wp-content/themes/example`.
 
-**Note** It will place the files in the current directory, so make sure to be in the directory where you want the files**
+**Note** It will place the files in the current directory, so make sure to be in the directory where you want the files
+
+### Run the script on local to check for errors before commiting
+
+- After you run the travis sub-command to place travis related files, you will have `ci.sh` script file in the repository root.
+- You can simply run that script to check for errors on your local machine. `bash ci.sh`.
 
 ## How to use it locally
 
