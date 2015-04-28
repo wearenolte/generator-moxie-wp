@@ -82,6 +82,7 @@ yo moxie-wp:travis
 ***OR***
 
 - You can run `gulp phpcs` & `gulp jshint` within your theme folder. That will also show you the errors.
+- You will need to run `composer install` before you run `gulp phpcs`
 
 ## How to use it locally
 
