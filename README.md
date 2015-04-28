@@ -68,7 +68,9 @@ yo moxie-wp:wptest
 yo moxie-wp:travis
 ```
 
-- That's it. The tool will place a `.travis.yml` file for [Travis-CI](travis-ci.com) integration and `ci.sh` script file which will be executed on every commit pushed to repo.
+- The tool will place a `.travis.yml` file for [Travis-CI](travis-ci.com) integration and `ci.sh` script file which will be executed on every commit pushed to repo.
+
+- You will need to update the `THEME_DIR` variable in `ci.sh` script according to your theme repository. E.g., if your wordpress theme path is `wp-content/themes/example` in your repository, then you will put `THEME_DIR` value as `wp-content/themes/example`.
 
 **Note** It will place the files in the current directory, so make sure to be in the directory where you want the files**
 
