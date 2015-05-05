@@ -17,6 +17,7 @@ export WPCS_GITHUB_SRC=WordPress-Coding-Standards/WordPress-Coding-Standards
 export WPCS_GIT_TREE=master
 export PATH_INCLUDES=./
 export WPCS_STANDARD=$(if [ -e phpcs.ruleset.xml ]; then echo phpcs.ruleset.xml; else echo WordPress-Core; fi)
+export JSHINT_IGNORE_PATH='/tmp/.jshintignore'
 
 # Install PHP_CodeSniffer and the WordPress Coding Standards
 mkdir -p $PHPCS_DIR && curl -L https://github.com/$PHPCS_GITHUB_SRC/archive/$PHPCS_GIT_TREE.tar.gz | tar xvz --strip-components=1 -C $PHPCS_DIR
@@ -34,8 +35,6 @@ cd $REPO_DIR
 
 cd $THEME_DIR
 
-set -e
-
 # Run PHP syntax check
 find $PATH_INCLUDES -path ./bin -prune -o \( -name '*.php' \) -exec php -lf {} \;
 
@@ -43,5 +42,6 @@ find $PATH_INCLUDES -path ./bin -prune -o \( -name '*.php' \) -exec php -lf {} \
 $PHPCS_DIR/scripts/phpcs --standard=$WPCS_STANDARD $(if [ -n "$PHPCS_IGNORE" ]; then echo --ignore=$PHPCS_IGNORE; fi) $(find $PATH_INCLUDES -name '*.php')
 echo 'phpcs done';
 # Run JSHint
-jshint --exclude-path='gulpfile.js' $(find $PATH_INCLUDES -type d \( -name 'node_modules' -o -name 'bower_components' -o -wholename 'assets/js/vendor' -o -wholename 'library/vendors' \) -prune -o -name '*.js' -print)
+echo -e "gulpfile.js\n**/*min.js" >> $JSHINT_IGNORE_PATH
+jshint --exclude-path=$JSHINT_IGNORE_PATH $(find ./ -type d \( -name '**min.js' -o -name 'node_modules' -o -name 'bower_components' -o -wholename '**/assets/js/vendor' -o -wholename '**/library/vendors' \) -prune -o -name '*.js' -print)
 echo 'jshint done';
