@@ -1,6 +1,6 @@
 {
   "name": "generator-moxie-wp",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "WordPress Starter Theme Generator",
   "license": "MIT",
   "main": "app/index.js",
