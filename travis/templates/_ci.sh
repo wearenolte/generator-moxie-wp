@@ -42,6 +42,6 @@ find $PATH_INCLUDES -path ./bin -prune -o \( -name '*.php' \) -exec php -lf {} \
 $PHPCS_DIR/scripts/phpcs --standard=$WPCS_STANDARD $(if [ -n "$PHPCS_IGNORE" ]; then echo --ignore=$PHPCS_IGNORE; fi) $(find $PATH_INCLUDES -name '*.php')
 echo 'phpcs done';
 # Run JSHint
-echo -e "gulpfile.js\n**/*min.js" >> $JSHINT_IGNORE_PATH
-jshint --exclude-path=$JSHINT_IGNORE_PATH $(find ./ -type d \( -name '**min.js' -o -name 'node_modules' -o -name 'bower_components' -o -wholename '**/assets/js/vendor' -o -wholename '**/library/vendors' \) -prune -o -name '*.js' -print)
+echo -e "**/node_modules/**\n**/bower_components/**\n**/assets/js/vendor/**\n**/library/vendors/**\ngulpfile.js\n**/*min.js\n**/*production.js" > $JSHINT_IGNORE_PATH
+jshint --exclude-path=$JSHINT_IGNORE_PATH $(find ./ -type d \( -name 'node_modules' -o -name 'bower_components' -o -wholename '**/assets/js/vendor' -o -wholename '**/library/vendors' \) -prune -o -name '*.js' ! -name 'gulpfile.js'  ! -wholename '**/*min.js' ! -wholename '**/*production.js' -print)
 echo 'jshint done';
