@@ -193,6 +193,13 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         this.templatePath('editorconfig'),
         this.destinationPath(this.themeDirectory + '.editorconfig')
       );
+    },
+    readmefiles: function() {
+      this.fs.copyTpl(
+        this.templatePath('_readme.md'),
+        this.destinationPath('./readme.md'),
+        { name: this.themeName }
+      );
     }
   },
   getGitIgnore: function(){
