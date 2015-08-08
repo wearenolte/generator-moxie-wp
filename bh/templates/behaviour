@@ -1,0 +1,4 @@
+<%= base %>.Behaviors.<%= name %> = <%= base %>.Behaviors.Base.extend({
+  initialize: function() {
+  },
+});
