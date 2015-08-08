@@ -35,6 +35,25 @@ Finally, initiate the generator:
 yo moxie-wp
 ```
 
+## Generate a new Behavior
+
+To create a new behavior you need to be in the theme directory for
+example: `cd wp-content/themes/Lean/`
+
+Then you need to run:
+```bash
+yo moxie-wp:bh
+```
+
+That will generate a new proompt where you can set the name of the
+behavior like: **instagram feed**, this will generate the
+`instagram-feed.js` file in to the:
+
+`assets/js/app/behaviors/`
+
+Directory, also you need to have the `init.js` in to the
+`assets/js/app/init.js`.
+
 ## Install wordpress files for the repo.
 
 - To download the latest version of wordpress just run
