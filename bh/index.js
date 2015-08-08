@@ -31,8 +31,6 @@ var MoxieBehaviour = yeoman.generators.Base.extend( {
       this.behaviourName = this.behaviourName.replace(/\s/g, '');
 
       this.filename = this.behaviour.replace(/\s/g, '-') + '.js';
-      console.log( this.behaviourName );
-      console.log( this.filename );
     },
 
     getBaseName: function(){
@@ -47,7 +45,6 @@ var MoxieBehaviour = yeoman.generators.Base.extend( {
     },
 
     createBehaviour: function(){
-      console.log( this.templatePath('behaviour') );
       this.fs.copyTpl( this.templatePath('behaviour'),
         this.destinationPath('./assets/js/app/behaviors/' + this.filename ),
         {
