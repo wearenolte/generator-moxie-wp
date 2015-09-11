@@ -35,6 +35,15 @@ Finally, initiate the generator:
 yo moxie-wp
 ```
 
+## Add workflow file
+
+To add the workflow file just run the following command and reply with:
+'y'
+
+```bash
+yo moxie-wp:workflow
+```
+
 ## Generate a new Behavior
 
 To create a new behavior you need to be in the theme directory for
