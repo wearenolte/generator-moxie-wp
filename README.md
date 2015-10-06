@@ -121,7 +121,7 @@ yo moxie-wp:travis
 - Create a project folder for which you need `moxie-wp` generator. (Not within the `generator-moxie-wp` folder) i.e., `mkdir testing-out-loud && cd testing-out-loud`
 - `yo moxie-wp` and see the magic.
 
-## Some Like it Neat Guidelines
+## b Guidelines
 
 #### Pre-requisites
 
@@ -134,7 +134,7 @@ curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 ```
 
-- This generator downloads [Some Like it Neat](https://github.com/digisavvy/some-like-it-neat) theme and sets it up for you.
+- This generator downloads [b](http://getmoxied.net) theme and sets it up for you.
 - You can explore its documentation to know more about the theme.
 - Here are a few important steps that you might have to follow if you're stuck.
     - **npm dependency failed**
