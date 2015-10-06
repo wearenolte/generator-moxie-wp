@@ -30,7 +30,7 @@ To install generator-moxie-wp from npm, run:
 npm install -g generator-moxie-wp
 ```
 
-Now you should have the generator available, and you can use any of the available commands. Learn more about the default generator in the [commands](https://github.com/moxienyc/generator-moxie-wp/blob/master/commands.md) file.
+Now you should have the generator available, and you can use any of the available [commands](https://github.com/moxienyc/generator-moxie-wp/blob/master/commands.md). Learn about the  available [commands](https://github.com/moxienyc/generator-moxie-wp/blob/master/commands.md).
 
 ## Commands available
 
