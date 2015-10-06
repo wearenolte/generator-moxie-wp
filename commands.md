@@ -1,4 +1,4 @@
-## Setup An enviroment based on a repo URL: 
+## Get setup locally follow these steps
 
 This is useful when you want to set up a local repo based on a url of a repository for this you need: 
 
@@ -6,6 +6,7 @@ This is useful when you want to set up a local repo based on a url of a reposito
 2. The name of the theme: ProyectB in this case, the name must match the same as the one inside of wp-content/themes/ProyectB.
 
 Create a new directory for your local project: 
+
 ```
 mkdir myLocalProyectB
 ```
@@ -24,13 +25,17 @@ yo moxie-wp:install
 
 This will ask two questions, answer with the information from the previous points, take a look at the screen shot.
 
+
 ![ScreenShot](https://cdn.rawgit.com/moxienyc/generator-moxie-wp/a6b488e97a9a78e0da4da9bfc7031605bac6b20a/captures/install.png)
 
-This will do: 
+
+This will do:  
+
 1. Download wordpress in the current directory
 2. Install node dependencies
 3. Install bower dependencies
 4. Install composer dependencies
+
 
 Once this is complete you are ready to go, just need to update your Wordpress configuration frmo the `wp-config.php` file or directly from the browser.
 
