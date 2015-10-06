@@ -5,23 +5,10 @@ var fs = require('fs.extra');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var chmod = require('chmod');
 
-//TODO - Composer Integration
-//TODO - Capistrano Integration
-//TODO - Use Some like it neat theme
-//TODO - Cleanup the file replacement scripts
-//TODO - Create Directory if one does not exist
-//TODO - Create Scripts for running SASS (or convert to better patterns - SMACSS)
-//TODO - Create Scripts for Initial JS Structure
-//TODO - Structure the overall app to follow Moxie Standards
-//TODO - Clean up .gitignore
-//TODO - Add Deploy Tasks via gulp build&&deploy (using wpcli)
-//TODO - Add Plugin Install Tasks (using wpcli)
-//TODO - Add All Gulp Tasks (using wpcli)
-//TODO - Add Task for Seeding DB (using wpcli)
-//TODO - JSJHint
-//TODO - PHP CodeSniffer
-//TODO - WordPress Coding Standards
+var leanRelase = 'https://github.com/moxienyc/Moxie-Lean/archive/master.zip';
+var themeName = 'Moxie-Lean-master';
 
 var MoxieWpGenerator = yeoman.generators.Base.extend({
 
@@ -29,7 +16,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
   },
 
-  //Ask user what the settings for the theme should be
+  // Ask user what the settings for the theme should be
   prompts: function () {
 
     var done = this.async();
@@ -48,29 +35,29 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
       {
         name: 'themeAuthor',
         message: 'Who is the theme author?',
-        default: function (answers) {
+        default: function () {
           return 'Moxie NYC - http://getmoxied.net';
         }
       },
       {
         name: 'themeAuthorURI',
         message: 'What\'s the url of the theme author?',
-        default: function (answers) {
+        default: function () {
           return 'http://getmoxied.net';
         }
       },
       {
         name: 'themeURI',
         message: 'What is the url of where this website will be deployed in production?',
-        default: function (answers) {
+        default: function () {
           return 'http://getmoxied.net';
         }
       },
       {
         name: 'themeDescription',
         message: 'Tell me a brief description of this theme.',
-        default: function (answers) {
-          return answers.themeName + ' custom theme';
+        default: function () {
+          return 'Bare bones WordPress starter theme focused on modularity, scalability and performance.';
         }
       }
     ];
@@ -92,50 +79,31 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  getUnderscoreFromGitUrl: function () {
+  downloadTheme: function () {
     var cb = this.async();
 
-    this.log.writeln(chalk.green("\n\nGrabbing the latest 'Some Like it Neat' theme from GitHub, yo!"));
-    this.extract('https://github.com/digisavvy/some-like-it-neat/archive/master.tar.gz', '.', cb);
-    this.log.writeln(chalk.green("\n\nGot that fresh 'Some Like it Neat', yo!"));
+    this.log.writeln( chalk.green("\n\nGrabbing the latest version from Lean Theme!") );
+    this.extract( leanRelase, '.', cb );
+    this.log.writeln( chalk.green("\n\Download complete!") );
   },
+
 
   moveFilesToCorrectLocation: function () {
-
     var finito = this.async();
-    var _this = this;
-
-    function moveDirectory( src, dest ) {
-      fs.copyRecursive( src, dest, function ( err ) {
-        if ( err ) {
-          return console.log(chalk.red(err));
-        }
-        console.log(chalk.green('Yo ! Theme files are copied!'));
-        finito();
-      } )
-    }
-
-    moveDirectory( 'some-like-it-neat-master', this.themeDirectory );
-  },
-
-  removeExtraFiles: function() {
-
-    var finito = this.async();
-
-    fs.remove( './some-like-it-neat-master', function( err ) {
+    fs.copyRecursive( themeName, this.themeDirectory, function ( err ) {
       if ( err ) {
-        return console.log( chalk.red( err ) );
+        return console.log(chalk.red(err));
       }
-      console.log(chalk.green('Yo ! Extra Files are removed!'));
+      console.log(chalk.green('Theme files are copied!'));
       finito();
     });
   },
 
   setupFilesWithTheCorrectSettingNames: function () {
     var finito = this.async();
-    var _this = this;
+    var that = this;
 
-    function parseDirectory(path) {
+    (function parseDirectory(path) {
 
       fs.readdir(path, function (err, files) {
         if( ! files ) {
@@ -144,10 +112,10 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         files.forEach(function (file) {
 
           var filePath = fs.realpathSync(path + '/' + file);
-          var isDirectory = fs.statSync(filePath).isDirectory()
+          var isDirectory = fs.statSync(filePath).isDirectory();
 
           if ( isDirectory && filePath.indexOf('.git') < 0 ) {
-            parseDirectory(filePath)
+            parseDirectory(filePath);
           } else {
 
             fs.readFile(filePath, 'utf8', function (err, data) {
@@ -156,96 +124,54 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
                 return;
               }
 
-              data = data.replace(/Some Like it Neat/g, _this.themeName);
-              data = data.replace(/some_like_it_neat_/g, _this.themeFunction);
-              data = data.replace(/some_like_it_neat/g, _this.themeTextDomain.replace(/Text Domain: /g, ''));
-              data = data.replace(/Text Domain: some_like_it_neat/g, _this.themeTextDomain);
-              data = data.replace(/ Some Like it Neat/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
-              data = data.replace(/some-like-it-neat-/g, _this.themeHandle);
-              data = data.replace(/somelikeitneat/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
-              data = data.replace(/Alex Vasquez/g, _this.themeAuthor);
-              data = data.replace(/http:\/\/alexhasnicehair.com/g, _this.themeAuthorURI);
-              data = data.replace(/https:\/\/github.com\/digisavvy\/some-like-it-neat/g, _this.themeURI);
-              data = data.replace(/A simple yet advanced Starter Theme built using _S, Bourbon and Neat \(http:\/\/underscores\.me, http:\/\/bourbon\.io, http:\/\/neat\.bourbon\.io\)\. Please refer to the README\.md file for basic usage instructions and prerequisites\. You can always grab the latest version over at http:\/\/github\.com\/digisavvy\.some-like-it-neat/g, _this.themeDescription);
-
-              //data = data.replace(/themeDesigner/g, _this.themeDesigner);
-              //data = data.replace(/themeDesignerURI/g, _this.themeDesignerURI);
+              data = data.replace(/(Lean|lean)/g, that.themeName);
+              // data = data.replace(/b_/g, _this.themeFunction);
+              // data = data.replace(/b/g, _this.themeTextDomain.replace(/Text Domain: /g, ''));
+              // data = data.replace(/Text Domain: b/g, _this.themeTextDomain);
+              // data = data.replace(/ b/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
+              // data = data.replace(/b/g, _this.themeHandle);
+              // data = data.replace(/ b/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
 
               fs.writeFile(filePath, data, 'utf8', function (err) {
-                if (err) return console.log(err);
+                if (err) {
+                  return console.log(err);
+                }
               });
             });
           }
-
-        })
-      })
-    }
-
-    parseDirectory('.');
+        });
+      });
+    })('.');
     console.log(chalk.green('Yo ! Theme files are setup!'));
     finito();
   },
 
-  writing: {
-    // Going to theme directory and then copy editorconfig.
-    projectfiles: function () {
-      this.fs.copy(
-        this.templatePath('editorconfig'),
-        this.destinationPath(this.themeDirectory + '.editorconfig')
-      );
-    },
-    readmefiles: function() {
-      this.fs.copyTpl(
-        this.templatePath('_readme.md'),
-        this.destinationPath('./readme.md'),
-        { name: this.themeName }
-      );
-    }
-  },
-  getGitIgnore: function(){
+  writing: function(){
     this.fs.copyTpl(
       this.templatePath('gitignore'),
       this.destinationPath('./.gitignore'),
-      { name: this.themeName }
+      {
+        name: this.themeName
+      }
+    );
+    this.fs.copyTpl(
+      this.templatePath('script'),
+      this.destinationPath('./script.sh'),
+      {
+        themePath: path.normalize( this.themeDirectory )
+      }
     );
   },
-  setupGitIgnore: function(){
-    var that = this;
-    var content;
-    console.log( chalk.green( 'Adding the .gitignore file' ) );
-    fs.readFile('./.gitignore', 'utf8', function read(err, line) {
-      if (err) {
-        var message = 'There was a problem reading the .gitignore file';
-        console.log( chalk.bold.red( message ) );
-      }
-      if( line && line.replace ){
-        line = line.replace('{{name}}', that.themeName);
-      }
-      fs.writeFile('./.gitignore', line, 'utf8', function (err) {
-        if (err) return console.log(err);
-      });
+
+  install: function(){
+    chmod( path.normalize( this.destinationRoot() + '/script.sh'), 775 );
+    chmod( path.normalize( this.themeDirectory + '/bin/setup.sh'), 775 );
+    chmod( path.normalize( this.themeDirectory + '/bin/bye.sh'), 775 );
+    chmod( path.normalize( this.themeDirectory + '/bin/install.sh'), 775  );
+    this.spawnCommand( path.normalize( this.destinationRoot() + '/script.sh') ).on('error', function(error){
+      console.log(error);
     });
   },
-  end: function () {
-    // Going to theme directory and then install bower & npm.
-    var message;
-    process.chdir( path.normalize( this.themeDirectory ) );
-    this.installDependencies();
-
-    this.spawnCommand( 'composer', ['install'] ).on('error', function( err ){
-      message = '\n' +
-        'Yo! There was an error while the composer dependencies' +
-        'were installed, so please try to install the dependencies manually' +
-        '\n';
-      console.log( chalk.bold.red( message ) );
-    });
-    console.log( chalk.green( 'Yo ! Just started intalling Composer Dependencies. Running ' ) +
-                chalk.yellow( 'composer install' ) +
-                chalk.green( '. If this fails, try running the command yourself.' ) );
-
-    // Returning back to Root directory.
-    process.chdir( path.normalize( this.destinationRoot() ) );
-  }
 });
 
 module.exports = MoxieWpGenerator;
