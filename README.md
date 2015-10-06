@@ -36,11 +36,11 @@ Finally, initiate the generator:
 yo moxie-wp
 ```
 
-Learn more about the default generator in the [commands](#commands) file.
+Learn more about the default generator in the [commands](https://github.com/moxienyc/generator-moxie-wp/blob/master/commands.md) file.
 
 ## Commands available
 
-To learn more about all the [available commands](#) take a look at the [commands file](#).
+To learn more about all the [available commands](https://github.com/moxienyc/generator-moxie-wp/blob/master/commands.md) take a look at the [commands file](https://github.com/moxienyc/generator-moxie-wp/blob/master/commands.md).
 
 
 ## How to work with the generator locally
