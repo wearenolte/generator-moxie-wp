@@ -24,6 +24,13 @@ var MoxieInstall = yeoman.generators.Base.extend({
           return '';
         }
       },
+      {
+        name: 'themeName',
+        message: 'Enter the name of the theme',
+        default: function(){
+          return '';
+        },
+      }
     ];
 
     this.prompt(prompts, function( props ){
@@ -37,7 +44,8 @@ var MoxieInstall = yeoman.generators.Base.extend({
       this.templatePath('script'),
       this.destinationPath('../script.sh'),
       {
-        repoURL: path.normalize( this.repoURL )
+        repoURL: path.normalize( this.repoURL ),
+        themeName: this.themeName,
       }
     );
   },
