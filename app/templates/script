@@ -30,7 +30,7 @@ clear
 message "Move all files to the current directory"
 # Return to the paren (current) directory
 cd ..
-cp -R wp/Wordpress/ .
+cp -R wp/wordpress/ .
 
 message "Remove temp directory"
 rm -rf ./wp
