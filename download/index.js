@@ -4,9 +4,11 @@ var yeoman = require( 'yeoman-generator' );
 var chalk = require( 'chalk' );
 
 var MoxieDownload = yeoman.generators.Base.extend( {
+
     initializing: function () {
         this.pkg = require( '../package.json' );
     },
+
     prompting: function(){
       var done = this.async(); var prompt = {
         name: 'install',
@@ -22,11 +24,13 @@ var MoxieDownload = yeoman.generators.Base.extend( {
         }
       }.bind( this));
     },
+
     install: function(){
       var done = this.async();
       this.composeWith('moxie-wp:get');
       done();
     },
+
     end: function(){
       var message = 'We are done, thanks, and have a nice day';
       console.log('\n' + chalk.bold.green( message ));

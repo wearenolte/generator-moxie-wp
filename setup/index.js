@@ -4,6 +4,7 @@ var yeoman = require( 'yeoman-generator' );
 var fs = require('fs.extra');
 var chalk = require( 'chalk' );
 var path = require('path');
+var chmod = require('chmod');
 
 var MoxieSetup = yeoman.generators.Base.extend({
     initializing: function () {
@@ -40,6 +41,8 @@ var MoxieSetup = yeoman.generators.Base.extend({
       var done = this.async();
       console.log( chalk.bold.yellow( 'Trying to install dependencies' ) );
       if( fs.existsSync( './bin/setup.sh' ) ){
+        chmod( './bin/setup.sh', 775 );
+        chmod( './bin/bye.sh', 775 );
         var runScript = this.spawnCommand( './bin/setup.sh' );
         console.log( chalk.bold.yellow( 'Looks like do we have a setup shell script we are going to use that' ) );
         runScript.on('close', function( code ){
