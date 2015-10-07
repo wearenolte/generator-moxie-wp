@@ -5,7 +5,6 @@ var fs = require('fs.extra');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var chmod = require('chmod');
 
 var leanRelase = 'https://github.com/moxienyc/Moxie-Lean/archive/master.zip';
 var themeName = 'Moxie-Lean-master';
@@ -81,7 +80,6 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
 
   downloadTheme: function () {
     var cb = this.async();
-
     this.log.writeln( chalk.green("\n\nGrabbing the latest version from Lean Theme!") );
     this.extract( leanRelase, '.', cb );
     this.log.writeln( chalk.green("\n\Download complete!") );
@@ -147,6 +145,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
   },
 
   writing: function(){
+    var done = this.async();
     this.fs.copyTpl(
       this.templatePath('gitignore'),
       this.destinationPath('./.gitignore'),
@@ -154,24 +153,22 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         name: this.themeName
       }
     );
-    this.fs.copyTpl(
-      this.templatePath('script'),
-      this.destinationPath('./script.sh'),
-      {
-        themePath: path.normalize( this.themeDirectory )
-      }
-    );
+    done();
   },
 
   install: function(){
-    chmod( path.normalize( this.destinationRoot() + '/script.sh'), 775 );
-    chmod( path.normalize( this.themeDirectory + '/bin/setup.sh'), 775 );
-    chmod( path.normalize( this.themeDirectory + '/bin/bye.sh'), 775 );
-    chmod( path.normalize( this.themeDirectory + '/bin/install.sh'), 775  );
-    this.spawnCommand( path.normalize( this.destinationRoot() + '/script.sh') ).on('error', function(error){
-      console.log(error);
-    });
+    var done = this.async();
+    // Install and get wordpress
+    this.composeWith('moxie-wp:get');
+    done();
   },
+  end: function(){
+    var done = this.async();
+    // Install dependencies
+    this.composeWith('moxie-wp:setup');
+    console.log( chalk.green.bold('All good, thank you!') );
+    done();
+  }
 });
 
 module.exports = MoxieWpGenerator;
