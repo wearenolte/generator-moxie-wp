@@ -4,6 +4,9 @@ var path = require('path');
 var chmod = require('chmod');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
+var rimraf = require('rimraf');
+var chalk = require('chalk');
+var fs = require('fs.extra');
 
 var MoxieInstall = yeoman.generators.Base.extend({
   initializing: function () {
@@ -18,42 +21,48 @@ var MoxieInstall = yeoman.generators.Base.extend({
 
     var prompts = [
       {
-        name: 'repoURL',
-        message: 'Enter the url of the repository',
-        default: function(){
-          return '';
-        }
-      },
-      {
-        name: 'themeName',
-        message: 'Enter the name of the theme',
-        default: function(){
-          return '';
-        },
+      name: 'repoURL',
+      message: 'Enter the url of the repository',
+      default: function(){
+        return '';
       }
+    },
     ];
 
     this.prompt(prompts, function( props ){
       this.repoURL = props.repoURL;
-      this.themeName = props.themeName;
       done();
     }.bind( this ));
   },
-  writing: function(){
-    this.fs.copyTpl(
-      this.templatePath('script'),
-      this.destinationPath('../script.sh'),
-      {
-        repoURL: path.normalize( this.repoURL ),
-        themeName: this.themeName,
-      }
-    );
+  cloneRepo: function(){
+    var done = this.async();
+    if( fs.existsSync('.git') ){
+        console.log( chalk.yellow.bold('Git repo is already installed') );
+        done();
+    } else {
+      var clone = this.spawnCommand('git', ['clone', this.repoURL, '.']);
+      clone.on('close', function(code){
+        if( code === 0 ){
+          console.log( chalk.green.bold('Repo cloned succesfully') );
+        } else {
+          console.log( chalk.red.bold('There was an error during the clone') );
+        }
+        done();
+      });
+    }
   },
   install: function(){
-    chmod( '../script.sh', 775 );
-    this.spawnCommand( '../script.sh').on('error', function(error){
-      console.log(error);
-    });
+    var done = this.async();
+    // Install and get wordpress
+    this.composeWith('moxie-wp:get');
+    done();
+  },
+  end: function(){
+    var done = this.async();
+    // Install dependencies
+    this.composeWith('moxie-wp:setup');
+    console.log( chalk.green.bold('All good, thank you!') );
+    done();
   }
 });
 module.exports = MoxieInstall;
