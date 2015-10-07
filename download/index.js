@@ -45,7 +45,7 @@ var MoxieDownload = yeoman.generators.Base.extend( {
     removeDefaultWPContent: function(){
       var cb = this.async();
       var that = this;
-      var message = 'Removing default wp-content directory from WP';
+      var message = 'Removing default wp-content directory from Wordpress downloaded file';
       console.log('\n' + chalk.bold.yellow( message ));
 
       rimraf('./tmp/wordpress/wp-content', function(){
@@ -55,10 +55,7 @@ var MoxieDownload = yeoman.generators.Base.extend( {
     moveWordpressFiles: function(){
       var finito = this.async();
       var that = this;
-      var messages = {
-      };
-
-      console.log( chalk.bold.yellow( 'Copy all files of WP to this directory' ) );
+      console.log( chalk.bold.yellow( 'Copy all files from Wordpress to this directory' ) );
       fs.copyRecursive('./tmp/wordpress', '.', function( error ) {
         if( error ){
           console.log( chalk.bold.red( 'There was an error where the files were copied' ) );
