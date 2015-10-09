@@ -1,7 +1,7 @@
 {
   "name": "generator-moxie-wp",
-  "version": "0.0.13",
-  "description": "WordPress Starter Theme Generator",
+  "version": "1.0.0",
+  "description": "WordPress Starter Theme Generator and WP utilities",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "moxienyc/generator-moxie-wp",
@@ -10,6 +10,13 @@
     "email": "jnolte@getmoxied.net",
     "url": "https://github.com/jeffreynolte"
   },
+  "contributors": [
+    {
+      "name": "Crisoforo Gaspar Hernandez",
+      "email": "mitogh@gmail.com",
+      "url": "https://github.com/mitogh"
+    }
+  ],
   "engines": {
     "node": ">=0.10.0"
   },
