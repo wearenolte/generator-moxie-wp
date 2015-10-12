@@ -1,6 +1,6 @@
 {
   "name": "generator-moxie-wp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "WordPress Starter Theme Generator and WP utilities",
   "license": "MIT",
   "main": "app/index.js",
@@ -26,8 +26,9 @@
     "yeoman-generator",
     "wordpress",
     "front-end",
-    "underscores",
-    "gulp"
+    "gulp",
+    "php",
+    "lean"
   ],
   "dependencies": {
     "chalk": "^0.5.1",
