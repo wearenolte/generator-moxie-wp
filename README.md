@@ -53,8 +53,4 @@ You can learn more about the pre-requisites of the [Lean theme in the official r
 
 ## Roadmap
 
-- WordPress coding standards: https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
-- PHP Code Sniffer Integration: https://github.com/squizlabs/PHP_CodeSniffer
-- PHPUnit for unit tests
-- Travis CI: https://travis-ci.org/recent
 - Pre-Commit hooks: http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
