@@ -1,5 +1,5 @@
 {
-  "name": "moxie-wp",
+  "name": "generator-moxie-wp",
   "version": "0.0.14",
   "description": "WordPress Starter Theme Generator and WP utilities",
   "keywords": [
@@ -43,5 +43,6 @@
   },
   "engines": {
     "node": ">=0.10.0"
-  }
+  },
+  "license": "MIT"
 }
