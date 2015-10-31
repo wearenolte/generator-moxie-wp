@@ -5,6 +5,7 @@ var fs = require('fs.extra');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var rimraf = require( 'rimraf' );
 
 var leanRelase = 'https://github.com/moxienyc/Moxie-Lean/archive/master.zip';
 var themeName = 'Moxie-Lean-master';
@@ -93,6 +94,13 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
       }
       console.log(chalk.green('Theme files are copied!'));
       finito();
+    });
+  },
+
+  removeThemeFiles: function(){
+    var done = this.async();
+    rimraf('Moxie-Lean-master', function(){
+      done();
     });
   },
 
