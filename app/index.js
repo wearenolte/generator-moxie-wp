@@ -57,7 +57,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
         name: 'themeDescription',
         message: 'Tell me a brief description of this theme.',
         default: function () {
-          return 'Bare bones WordPress starter theme focused on modularity, scalability and performance.';
+          return 'Bare bones WordPress starter theme.';
         }
       }
     ];
@@ -106,6 +106,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
 
   setupFilesWithTheCorrectSettingNames: function () {
     var finito = this.async();
+    var that = this;
 
     (function parseDirectory(path) {
 
@@ -129,6 +130,11 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
                   return;
                 }
 
+                // Description
+                data = data.replace(
+                  /Bare bones WordPress starter theme focused on modularity, scalability and performance./,
+                  that.themeDescription
+                );
                 // data = data.replace(/(Lean|lean)/g, that.themeName);
                 // data = data.replace(/b_/g, _this.themeFunction);
                 // data = data.replace(/b/g, _this.themeTextDomain.replace(/Text Domain: /g, ''));
