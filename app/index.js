@@ -65,12 +65,11 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
       this.themeName = props.themeName;
       this.themeHandle = props.themeName.trim().replace(/ /g, '-');
       this.themeFunction = props.themeName.toLowerCase().trim().replace(/ /g, '_') + '_';
-      this.themeTextDomain = 'Text Domain: ' + props.themeName.toLowerCase().trim().replace(/ /g, '_');
+      this.themeTextDomain = props.themeName.toLowerCase().trim().replace(/ /g, '_');
       this.themeAuthor = props.themeAuthor;
       this.themeAuthorURI = props.themeAuthorURI;
       this.themeURI = props.themeURI;
       this.themeDescription = props.themeDescription;
-
       this.themeDirectory = './wp-content/themes/' + this.themeHandle.toLowerCase() + '/';
 
       done();
@@ -99,7 +98,6 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
 
   setupFilesWithTheCorrectSettingNames: function () {
     var finito = this.async();
-    var that = this;
 
     (function parseDirectory(path) {
 
@@ -115,27 +113,29 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
           if ( isDirectory && filePath.indexOf('.git') < 0 ) {
             parseDirectory(filePath);
           } else {
+            var re = /\.(php|js|css|scss$)/gim;
+            if( re.test(file) === true ){
 
-            fs.readFile(filePath, 'utf8', function (err, data) {
-
-              if ( typeof data === 'undefined' ) {
-                return;
-              }
-
-              data = data.replace(/(Lean|lean)/g, that.themeName);
-              // data = data.replace(/b_/g, _this.themeFunction);
-              // data = data.replace(/b/g, _this.themeTextDomain.replace(/Text Domain: /g, ''));
-              // data = data.replace(/Text Domain: b/g, _this.themeTextDomain);
-              // data = data.replace(/ b/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
-              // data = data.replace(/b/g, _this.themeHandle);
-              // data = data.replace(/ b/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
-
-              fs.writeFile(filePath, data, 'utf8', function (err) {
-                if (err) {
-                  return console.log(err);
+              fs.readFile(filePath, 'utf8', function (err, data) {
+                if ( typeof data === 'undefined' ) {
+                  return;
                 }
+
+                // data = data.replace(/(Lean|lean)/g, that.themeName);
+                // data = data.replace(/b_/g, _this.themeFunction);
+                // data = data.replace(/b/g, _this.themeTextDomain.replace(/Text Domain: /g, ''));
+                // data = data.replace(/Text Domain: b/g, _this.themeTextDomain);
+                // data = data.replace(/ b/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
+                // data = data.replace(/b/g, _this.themeHandle);
+                // data = data.replace(/ b/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
+
+                fs.writeFile(filePath, data, 'utf8', function (err) {
+                  if (err) {
+                    return console.log(err);
+                  }
+                });
               });
-            });
+            }
           }
         });
       });
@@ -157,17 +157,17 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
   },
 
   install: function(){
-    var done = this.async();
-    // Install and get wordpress
-    this.composeWith('moxie-wp:get');
-    done();
+    // var done = this.async();
+    // // Install and get wordpress
+    // this.composeWith('moxie-wp:get');
+    // done();
   },
   end: function(){
-    var done = this.async();
-    // Install dependencies
-    this.composeWith('moxie-wp:setup');
-    console.log( chalk.green.bold('All good, thank you!') );
-    done();
+    // var done = this.async();
+    // // Install dependencies
+    // this.composeWith('moxie-wp:setup');
+    // console.log( chalk.green.bold('All good, thank you!') );
+    // done();
   }
 });
 
