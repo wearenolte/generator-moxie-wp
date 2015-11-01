@@ -22,7 +22,9 @@ var MoxieWpTest = yeoman.generators.Base.extend( {
 
 	    // Have Yeoman greet the user.
 	    this.log( yosay(
-		    'Yo ! We will be setting up test data for your site.. Some quick questions to get started...Please provide WordPress webroot path for your site. We will be using wp-cli utility for this. So it is required.'
+		    'Yo ! We will be setting up test data for your site.. Some quick ' +
+        'questions to get started...Please provide WordPress webroot path for ' +
+        'your site. We will be using wp-cli utility for this. So it is required.'
 	    ) );
 
 	    var prompts = [ {
