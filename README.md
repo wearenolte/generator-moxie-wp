@@ -50,7 +50,3 @@ To learn more about all the [available commands](https://github.com/moxienyc/gen
 
 You can learn more about the pre-requisites of the [Lean theme in the official repo](https://github.com/moxienyc/Moxie-Lean#requirements).
 
-
-## Roadmap
-
-- Pre-Commit hooks: http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks

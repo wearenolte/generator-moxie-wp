@@ -37,8 +37,8 @@ var MoxieInstall = yeoman.generators.Base.extend({
   cloneRepo: function(){
     var done = this.async();
     if( fs.existsSync('.git') ){
-        console.log( chalk.yellow.bold('Git repo is already installed') );
-        done();
+      console.log( chalk.yellow.bold('Git repo is already installed') );
+      done();
     } else {
       var clone = this.spawnCommand('git', ['clone', this.repoURL, '.']);
       clone.on('close', function(code){

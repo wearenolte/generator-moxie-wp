@@ -19,7 +19,6 @@
     "get",
     "install",
     "setup",
-    "travis",
     "workflow",
     "wptest"
   ],

@@ -29,37 +29,37 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
 
     var prompts = [
       {
-        name: 'themeName',
-        message: 'What is the name of this theme?'
-      },
-      {
-        name: 'themeAuthor',
-        message: 'Who is the theme author?',
-        default: function () {
-          return 'Moxie NYC - http://getmoxied.net';
-        }
-      },
-      {
-        name: 'themeAuthorURI',
-        message: 'What\'s the url of the theme author?',
-        default: function () {
-          return 'http://getmoxied.net';
-        }
-      },
-      {
-        name: 'themeURI',
-        message: 'What is the url of where this website will be deployed in production?',
-        default: function () {
-          return 'http://getmoxied.net';
-        }
-      },
-      {
-        name: 'themeDescription',
-        message: 'Tell me a brief description of this theme.',
-        default: function () {
-          return 'Bare bones WordPress starter theme.';
-        }
+      name: 'themeName',
+      message: 'What is the name of this theme?'
+    },
+    {
+      name: 'themeAuthor',
+      message: 'Who is the theme author?',
+      default: function () {
+        return 'Moxie NYC - http://getmoxied.net';
       }
+    },
+    {
+      name: 'themeAuthorURI',
+      message: 'What\'s the url of the theme author?',
+      default: function () {
+        return 'http://getmoxied.net';
+      }
+    },
+    {
+      name: 'themeURI',
+      message: 'What is the url of where this website will be deployed in production?',
+      default: function () {
+        return 'http://getmoxied.net';
+      }
+    },
+    {
+      name: 'themeDescription',
+      message: 'Tell me a brief description of this theme.',
+      default: function () {
+        return 'Bare bones WordPress starter theme.';
+      }
+    }
     ];
 
     this.prompt(prompts, function (props) {
