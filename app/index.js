@@ -130,18 +130,23 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
                   return;
                 }
 
-                // Description
+                // Update theme description
                 data = data.replace(
                   /Bare bones WordPress starter theme focused on modularity, scalability and performance./,
                   that.themeDescription
                 );
-                // data = data.replace(/(Lean|lean)/g, that.themeName);
-                // data = data.replace(/b_/g, _this.themeFunction);
-                // data = data.replace(/b/g, _this.themeTextDomain.replace(/Text Domain: /g, ''));
-                // data = data.replace(/Text Domain: b/g, _this.themeTextDomain);
-                // data = data.replace(/ b/g, ' ' + _this.themeName); //Underscores DocBlocks (prefix with space)
-                // data = data.replace(/b/g, _this.themeHandle);
-                // data = data.replace(/ b/g, _this.themeTextDomain.replace(/_/g, '' ).replace(/Text Domain:/g, ''));
+
+                // Update theme package
+                data = data.replace(
+                  /@package Lean/,
+                  '@package ' + that.themeName
+                );
+
+                // Update theme name
+                data = data.replace(
+                  /Theme Name: Lean/,
+                  'Theme Name: ' + that.themeName
+                );
 
                 fs.writeFile(filePath, data, 'utf8', function (err) {
                   if (err) {
