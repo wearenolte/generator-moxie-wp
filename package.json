@@ -1,6 +1,6 @@
 {
   "name": "generator-moxie-wp",
-  "version": "0.0.14",
+  "version": "0.0.17",
   "description": "WordPress Starter Theme Generator and WP utilities",
   "keywords": [
     "yeoman-generator",
