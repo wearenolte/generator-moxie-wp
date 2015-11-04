@@ -2,8 +2,8 @@
 
 This is useful when you want to set up a local repo based on a url of a repository for this you need: 
 
-1. The url of the repo like: git@github.com:moxienyc/proyectB.git
-2. The name of the theme: ProyectB in this case, the name must match the same as the one inside of wp-content/themes/ProyectB.
+1. The url of the repo like: `git@github.com:moxienyc/proyectB.git`.
+2. The name of the theme: ProyectB in this case, the name must match the same as the one inside of `wp-content/themes/ProyectB`.
 
 Create a new directory for your local project: 
 
@@ -56,7 +56,8 @@ yo moxie-wp:workflow
 To create a new behavior you need to be in the theme directory for
 example: `cd wp-content/themes/Lean/`
 
-Then you need to run:
+Then you need to run:  
+
 ```bash
 yo moxie-wp:bh
 ```
@@ -66,9 +67,6 @@ behavior like: **instagram feed**, this will generate the
 `instagram-feed.js` file in to the:
 
 `assets/js/app/behaviors/`
-
-Directory, also you need to have the `init.js` in to the
-`assets/js/app/init.js`.
 
 ## Install wordpress files for the repo.
 
