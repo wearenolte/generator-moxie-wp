@@ -47,5 +47,6 @@ To learn more about all the [available commands](https://github.com/moxienyc/gen
 
 ## Pre-requisites
 
-You can learn more about the pre-requisites of the [Lean theme in the official repo](https://github.com/moxienyc/Moxie-Lean#requirements).
-
+- Node
+- Yeoman
+- You can learn more about the pre-requisites of the [Lean theme in the official repo](https://github.com/moxienyc/Moxie-Lean#requirements).
