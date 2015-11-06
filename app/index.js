@@ -123,38 +123,39 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
             parseDirectory(filePath);
           } else {
             var re = /\.(php|js|css|scss$)/gim;
-            if( re.test(file) === true ){
-
-              fs.readFile(filePath, 'utf8', function (err, data) {
-                if ( typeof data === 'undefined' ) {
-                  return;
-                }
-
-                // Update theme description
-                data = data.replace(
-                  /Bare bones WordPress starter theme focused on modularity, scalability and performance./,
-                  that.themeDescription
-                );
-
-                // Update theme package
-                data = data.replace(
-                  /@package Lean/,
-                  '@package ' + that.themeHandle.toLowerCase()
-                );
-
-                // Update theme name
-                data = data.replace(
-                  /Theme Name: Lean/,
-                  'Theme Name: ' + that.themeName
-                );
-
-                fs.writeFile(filePath, data, 'utf8', function (err) {
-                  if (err) {
-                    return console.log(err);
-                  }
-                });
-              });
+            if( re.test(file) !== true ){
+              return;
             }
+
+            fs.readFile(filePath, 'utf8', function (err, data) {
+              if ( typeof data === 'undefined' ) {
+                return;
+              }
+
+              // Update theme description
+              data = data.replace(
+                /Bare bones WordPress starter theme focused on modularity, scalability and performance./,
+                that.themeDescription
+              );
+
+              // Update theme package
+              data = data.replace(
+                /@package Lean/,
+                '@package ' + that.themeHandle.toLowerCase()
+              );
+
+              // Update theme name
+              data = data.replace(
+                /Theme Name: Lean/,
+                'Theme Name: ' + that.themeName
+              );
+
+              fs.writeFile(filePath, data, 'utf8', function (err) {
+                if (err) {
+                  return console.log(err);
+                }
+              });
+            });
           }
         });
       });
