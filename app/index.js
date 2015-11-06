@@ -123,38 +123,53 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
             parseDirectory(filePath);
           } else {
             var re = /\.(php|js|css|scss$)/gim;
-            if( re.test(file) === true ){
-
-              fs.readFile(filePath, 'utf8', function (err, data) {
-                if ( typeof data === 'undefined' ) {
-                  return;
-                }
-
-                // Update theme description
-                data = data.replace(
-                  /Bare bones WordPress starter theme focused on modularity, scalability and performance./,
-                  that.themeDescription
-                );
-
-                // Update theme package
-                data = data.replace(
-                  /@package Lean/,
-                  '@package ' + that.themeName
-                );
-
-                // Update theme name
-                data = data.replace(
-                  /Theme Name: Lean/,
-                  'Theme Name: ' + that.themeName
-                );
-
-                fs.writeFile(filePath, data, 'utf8', function (err) {
-                  if (err) {
-                    return console.log(err);
-                  }
-                });
-              });
+            if( re.test(file) !== true ){
+              return;
             }
+
+            fs.readFile(filePath, 'utf8', function (err, data) {
+              if ( typeof data === 'undefined' ) {
+                return;
+              }
+
+              // Update theme description
+              data = data.replace(
+                /Bare bones WordPress starter theme focused on modularity, scalability and performance./,
+                that.themeDescription
+              );
+
+              // Update theme package
+              data = data.replace(
+                /@package Lean/gm,
+                '@package ' + that.themeHandle.toLowerCase()
+              );
+
+              // Update theme name
+              data = data.replace(
+                /Theme Name: Lean/gm,
+                'Theme Name: ' + that.themeName
+              );
+              var behaviorsName = that.themeName.trim()
+              .replace(/\b\w/g, function(match){
+                return match.toUpperCase();
+              })
+              .replace(/\s|-/g, '');
+
+              data = data.replace(
+                /window\.Lean = {};/gm,
+                'window.' + behaviorsName + ' = {};'
+              );
+              data = data.replace(
+                /Lean\.Behaviors/gm,
+                behaviorsName + '.Behaviors'
+              );
+
+              fs.writeFile(filePath, data, 'utf8', function (err) {
+                if (err) {
+                  return console.log(err);
+                }
+              });
+            });
           }
         });
       });
@@ -174,19 +189,10 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     );
     done();
   },
-
-  install: function(){
-    // var done = this.async();
-    // // Install and get wordpress
-    // this.composeWith('moxie-wp:get');
-    // done();
-  },
   end: function(){
-    // var done = this.async();
-    // // Install dependencies
-    // this.composeWith('moxie-wp:setup');
-    // console.log( chalk.green.bold('All good, thank you!') );
-    // done();
+    var done = this.async();
+    console.log( chalk.green.bold('All good, thank you!') );
+    done();
   }
 });
 
