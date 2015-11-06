@@ -139,7 +139,7 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
                 // Update theme package
                 data = data.replace(
                   /@package Lean/,
-                  '@package ' + that.themeName
+                  '@package ' + that.themeHandle.toLowerCase()
                 );
 
                 // Update theme name
