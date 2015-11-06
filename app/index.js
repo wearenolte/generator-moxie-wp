@@ -189,19 +189,10 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
     );
     done();
   },
-
-  install: function(){
-    // var done = this.async();
-    // // Install and get wordpress
-    // this.composeWith('moxie-wp:get');
-    // done();
-  },
   end: function(){
-    // var done = this.async();
-    // // Install dependencies
-    // this.composeWith('moxie-wp:setup');
-    // console.log( chalk.green.bold('All good, thank you!') );
-    // done();
+    var done = this.async();
+    console.log( chalk.green.bold('All good, thank you!') );
+    done();
   }
 });
 
