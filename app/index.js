@@ -140,14 +140,28 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
 
               // Update theme package
               data = data.replace(
-                /@package Lean/,
+                /@package Lean/gm,
                 '@package ' + that.themeHandle.toLowerCase()
               );
 
               // Update theme name
               data = data.replace(
-                /Theme Name: Lean/,
+                /Theme Name: Lean/gm,
                 'Theme Name: ' + that.themeName
+              );
+              var behaviorsName = that.themeName.trim()
+              .replace(/\b\w/g, function(match){
+                return match.toUpperCase();
+              })
+              .replace(/\s|-/g, '');
+
+              data = data.replace(
+                /window\.Lean = {};/gm,
+                'window.' + behaviorsName + ' = {};'
+              );
+              data = data.replace(
+                /Lean\.Behaviors/gm,
+                behaviorsName + '.Behaviors'
               );
 
               fs.writeFile(filePath, data, 'utf8', function (err) {
