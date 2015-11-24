@@ -1,7 +1,6 @@
 'use strict';
 
 var path = require('path');
-var chmod = require('chmod');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var rimraf = require('rimraf');
