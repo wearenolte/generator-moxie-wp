@@ -5,11 +5,6 @@ var fs = require('fs.extra');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var rimraf = require( 'rimraf' );
-var chmod = require('chmod');
-
-var leanRelase = 'https://github.com/moxie-leean/Leean/archive/master.zip';
-var themeName = 'Leean-master';
 
 var MoxieWpGenerator = yeoman.generators.Base.extend({
 
@@ -84,14 +79,14 @@ var MoxieWpGenerator = yeoman.generators.Base.extend({
 
     this.log.writeln( chalk.green("\n\nGrabbing the latest version from Lean Theme!") );
 
-    this.fetch( leanRelase, '.', {}, function() {
-      this.log.writeln( chalk.green("\n\Download complete!") );
+    this.remote( 'moxie-leean', 'Leean', 'master', function( err, remote ){
+      if( err ){
+        this.log.writeln( chalk.red("\n\n" + err.message ) );
+        return;
+      }
+      remote.bulkDirectory('.', this.themeDirectory);
       cb();
     }.bind(this));
-  },
-
-  removeThemeFiles: function(){
-    var done = this.async();
   },
 
   setupFilesWithTheCorrectSettingNames: function () {
